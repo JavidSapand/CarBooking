@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\Auth;
 
+use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
@@ -19,6 +20,7 @@ class AuthController extends Controller {
 	*/
 
 	use AuthenticatesAndRegistersUsers;
+	protected $redirectTo = 'admin.home';
 
 	/**
 	 * Create a new authentication controller instance.
@@ -33,6 +35,52 @@ class AuthController extends Controller {
 		$this->registrar = $registrar;
 
 		$this->middleware('guest', ['except' => 'getLogout']);
+	}
+	 /*  
+    public function authenticate(Request $request)
+    {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'user_type' => 1]))
+		{
+    		
+            return redirect()->intended('admin.home');
+		}
+    }
+    */
+
+    public function postLogin(LoginRequest $request)
+	{
+		$this->validate($request, [
+			'email' => 'required|email', 'password' => 'required',
+		]);
+
+		$credentials = $request->only('email', 'password');
+
+		if ($this->auth->attempt($credentials, $request->has('remember')))
+		{
+			if(\Auth::user()->user_type=1){
+				return redirect('admin'); 
+			}
+			else{
+				return redirect()->intended($this->redirectPath());
+			}
+			
+		}
+
+		return redirect($this->loginPath())
+					->withInput($request->only('email', 'remember'))
+					->withErrors([
+						'email' => $this->getFailedLoginMessage(),
+					]);
+	}
+
+	public function redirectPath()
+	{
+		if (property_exists($this, 'redirectPath'))
+		{
+			return $this->redirectPath;
+		}
+
+		return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
 	}
 
 }
