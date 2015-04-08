@@ -1,6 +1,6 @@
-<?php namespace App\Services;
+<?php namespace carbooking\Services;
 
-use App\User;
+use carbooking\User;
 use Validator;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 
@@ -32,9 +32,7 @@ class Registrar implements RegistrarContract {
 		return User::create([
 			'email' => $data['email'],
 			'password' => bcrypt($data['password']),
-			'confirm' => 1,
-			'user_type' => 1
-
+			
 		]);
 
 		/*

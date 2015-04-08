@@ -14,6 +14,9 @@
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
+Route::get('admin', function(){
+	return View::make('admin.home');
+});
 
 // Route::get('booking','BookingController@index');
 // Route::get('booking/create','BookingController@create');

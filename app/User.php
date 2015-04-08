@@ -1,4 +1,4 @@
-<?php namespace App;
+<?php namespace carbooking;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -32,7 +32,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	protected $hidden = ['password', 'remember_token'];
 
 	public function booking(){
-		return $this->hasMany('App\Booking');
+		return $this->hasMany('carbooking\Booking');
 	}
 
 }

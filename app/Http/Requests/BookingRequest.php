@@ -1,6 +1,6 @@
-<?php namespace App\Http\Requests;
+<?php namespace carbooking\Http\Requests;
 
-use App\Http\Requests\Request;
+use carbooking\Http\Requests\Request;
 
 class BookingRequest extends Request {
 

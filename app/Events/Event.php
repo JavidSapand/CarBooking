@@ -1,4 +1,4 @@
-<?php namespace App\Events;
+<?php namespace carbooking\Events;
 
 abstract class Event {
 
