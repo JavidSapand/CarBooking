@@ -28,7 +28,7 @@ Route::resource('booking','BookingController');
 Route::post('booking/store','BookingController@store');
 
 
-// Route::controllers([
-// 	'auth' => 'Auth\AuthController',
-// 	'password' => 'Auth\PasswordController',
-// ]);
+	Route::controllers([
+	'auth' => 'Auth\AuthController',
+ 	'password' => 'Auth\PasswordController',
+]);
