@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use DB;
+use Auth;
 use App\Booking;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -11,18 +13,30 @@ class BookingController extends Controller {
 
 	public function index(){
 		$lists = Booking::all();
-		return view('booking.index',compact('lists',$lists));
+		//$cars = Booking::getAllCars();
+		return view('booking.index',compact('lists'));
 	}
 
 	public function create(){
-		return view('booking.create');
+		
+		//$cars = Booking::getAllCars();
+		$car = DB::table('cars')->lists('plate_no','id');
+		return view('booking.create',compact('car'));
 	}
 
 	public function store(BookingRequest $request){
 
 		$book = new Booking;
-		$book->car_id = $request->get('car_id');
-	    $book->user_id = $request->get('user_id');
+		if(Auth::guest())
+		{
+			$book->user_id = 1;
+		}
+		else
+		{	
+	    	$book->user_id = Auth::user()->id;
+	    }
+	    $book->car_id = $request->get('id');
+
 		$book->start_time = $request->get('start_time');
 		$book->end_time = $request->get('end_time');
 		$book->source = $request->get('source');

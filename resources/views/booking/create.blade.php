@@ -5,23 +5,22 @@
 @include('errors/errors')
 
 	<h1>Add New Booking Here!</h1>
-
+	
 	<hr>
 
 	{!! Form::open(array('url'=>'booking/store','class'=>'form')) !!}
 
-		<div class="form-group">
-			<!-- {!! Form::label('car_id','Car ID: ') !!}
-			{!! Form::text('car_id', null, ['class'=>'form-control','placeholder'=>'1.2.3....']) !!} -->
-			{!! Form::label('user_id','Select Car: ') !!}
-			{!! Form::text('user_id',null,['class'=>'form-control']) !!}
-		</div>
-		
-		<div class="form-group">
+	<!-- 	<div class="form-group">
 			{!! Form::label('car_id','Car ID: ') !!}
 			{!! Form::text('car_id', null, ['class'=>'form-control','placeholder'=>'1.2.3....']) !!}
-			<!-- {!! Form::label('car_id','Select Car: ') !!}
-			{!! Form::select('car_id', ['car_0'=>'Corolla','car_1'=>'Toyota'],null,['class'=>'form-control']) !!} -->
+			{!! Form::label('user_id','Select Car: ') !!}
+			{!! Form::text('user_id',null,['class'=>'form-control']) !!}
+		</div> -->
+		
+		<div class="form-group">
+			{!! Form::label('id','Select Car: ') !!}
+
+			{!! Form::select('id', $car ,null,['class'=>'form-control']) !!} 
 		</div>
 
 		<div class="form-group">
