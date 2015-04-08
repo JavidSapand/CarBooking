@@ -1,4 +1,4 @@
-<?php namespace carbooking\Http\Controllers;
+<?php namespace App\Http\Controllers;
 
 class HomeController extends Controller {
 

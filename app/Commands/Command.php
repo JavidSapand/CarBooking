@@ -1,4 +1,4 @@
-<?php namespace carbooking\Commands;
+<?php namespace App\Commands;
 
 abstract class Command {
 

@@ -1,11 +1,11 @@
-<?php namespace carbooking;
+<?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Car extends Model  {
 	
 	public function booking(){
-		return $this->hasMany('carbooking\Booking');
+		return $this->hasMany('App\Booking');
 	}
 	
 

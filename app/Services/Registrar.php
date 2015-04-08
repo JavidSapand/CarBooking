@@ -1,6 +1,6 @@
-<?php namespace carbooking\Services;
+<?php namespace App\Services;
 
-use carbooking\User;
+use App\User;
 use Validator;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 

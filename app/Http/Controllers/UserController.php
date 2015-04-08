@@ -1,7 +1,7 @@
-<?php namespace carbooking\Http\Controllers;
+<?php namespace App\Http\Controllers;
 
-use carbooking\Http\Requests;
-use carbooking\Http\Controllers\Controller;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 

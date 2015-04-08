@@ -1,15 +1,15 @@
-<?php namespace carbooking;
+<?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model  {
 
 	public function user(){
-		return $this->belongsTo('carbooking\User');
+		return $this->belongsTo('App\User');
 	}
 
 	public function car(){
-		return $this->belongsTo('carbooking\Car');
+		return $this->belongsTo('App\Car');
 	}
 	
 

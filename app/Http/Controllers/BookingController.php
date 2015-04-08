@@ -1,10 +1,10 @@
-<?php namespace carbooking\Http\Controllers;
+<?php namespace App\Http\Controllers;
 
-use carbooking\Booking;
-use carbooking\Http\Requests;
-use carbooking\Http\Controllers\Controller;
+use App\Booking;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
-use carbooking\Http\Requests\BookingRequest;
+use App\Http\Requests\BookingRequest;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller {
