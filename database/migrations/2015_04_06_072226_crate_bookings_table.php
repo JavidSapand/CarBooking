@@ -21,8 +21,11 @@ class CrateBookingsTable extends Migration {
 			$table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade');
 			$table->string('source');
 			$table->string('destination');
-			$table->date('start_time');
-			$table->date('end_time');
+			$table->string('start_time');
+			$table->date('start_date');
+			$table->string('end_time');
+			$table->date('end_date');
+
 			$table->timestamps();
 		});
 	}

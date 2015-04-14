@@ -5,6 +5,7 @@ use Auth;
 use App\Booking;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 use App\Http\Requests\BookingRequest;
 use Illuminate\Http\Request;
@@ -12,9 +13,9 @@ use Illuminate\Http\Request;
 class BookingController extends Controller {
 
 	public function index(){
-		$lists = Booking::all();
+		$books = Booking::all();
 		//$cars = Booking::getAllCars();
-		return view('booking.index',compact('lists'));
+		return view('booking.index',compact('books'));
 	}
 
 	public function create(){
@@ -26,7 +27,10 @@ class BookingController extends Controller {
 
 	public function store(BookingRequest $request){
 
+
 		$book = new Booking;
+
+		
 		if(Auth::guest())
 		{
 			$book->user_id = 1;
@@ -35,15 +39,18 @@ class BookingController extends Controller {
 		{	
 	    	$book->user_id = Auth::user()->id;
 	    }
+	   
 	    $book->car_id = $request->get('id');
-
-		$book->start_time = $request->get('start_time');
-		$book->end_time = $request->get('end_time');
+	    $book->start_time = $request->get('start_time');
+	    $s_date = Carbon::parse($request->get('start_date'));
+	    $book->start_date = $s_date;
+	    $book->end_time = $request->get('end_time');
+		$e_date = Carbon::parse($request->get('end_date'));
+	    $book->end_date = $e_date;
 		$book->source = $request->get('source');
 		$book->destination= $request->get('destination');
 		$book->save();
-
-	   // return \Redirect::route('booking.show',array($book->id))->with('message','Your book ahs been created!');
+		
 		return view('booking.store',compact('book','message','Your Book Added!'));
 	}
 

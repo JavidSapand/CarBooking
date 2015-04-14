@@ -6,8 +6,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Laravel</title>
 	{!! HTML::style('css/css/bootstrap.min.css') !!}
+	{!! HTML::style('css/jquery.timepicker.css') !!}
+	{!! HTML::style('css/bootstrap-datepicker.css') !!}
 	{!! HTML::style('css/table.css') !!}
 	{!! HTML::style('js/select2-4.0.0-rc.2/dist/css/select2.min.css') !!}
+	<!-- Scripts -->
+	{!! HTML::script('js/jquery-1.11.2.min.js')!!}
+	{!! HTML::script('js/bootstrap-datepicker.js')!!}	
+	{!! HTML::script('js/jquery.timepicker.js')!!}
+	{!! HTML::script('js/bootstrapjs/bootstrap.min.js')!!}
+	{!! HTML::script('js/select2-4.0.0-rc.2/dist/js/select2.min.js') !!} 
+	{!! HTML::script('js/table.js')!!}
+	
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 
 		<!-- Fonts -->
@@ -16,16 +26,7 @@
 
 	<!-- Optional theme -->
 
-	
 
-
-	
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -65,13 +66,5 @@
 		@yield('content')
 	</div>
 	
-
-	<!-- Scripts -->
-	{!! HTML::script('js/jquery-1.11.2.min.js')!!}
-	{!! HTML::script('js/bootstrapjs/bootstrap.min.js')!!}
-	{!! HTML::script('js/select2-4.0.0-rc.2/dist/js/select2.min.js') !!}
-	{!! HTML::script('js/table.js')!!}
-	<!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
