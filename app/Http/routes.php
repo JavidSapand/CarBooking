@@ -1,4 +1,5 @@
 <?php
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,8 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 Route::get('admin', function(){
-	return View::make('admin.home');
+	$users = User::all();
+	return View::make('admin.home', compact('users'));
 });
 
 // Route::get('booking','BookingController@index');

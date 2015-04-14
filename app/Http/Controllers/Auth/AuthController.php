@@ -1,6 +1,9 @@
 <?php namespace App\Http\Controllers\Auth;
 
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
+use App\User;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
@@ -57,11 +60,11 @@ class AuthController extends Controller {
 
 		if ($this->auth->attempt($credentials, $request->has('remember')))
 		{
-			if(\Auth::user()->user_type=1){
+			if(\Auth::user()->user_type==1){
 				return redirect('admin'); 
 			}
 			else{
-				return redirect()->intended($this->redirectPath());
+				return redirect('/home');
 			}
 			
 		}
@@ -71,6 +74,27 @@ class AuthController extends Controller {
 					->withErrors([
 						'email' => $this->getFailedLoginMessage(),
 					]);
+	}
+
+	public function postRegister(RegisterRequest $request)
+	{
+		$validator = $this->registrar->validator($request->all());
+
+		if ($validator->fails())
+		{
+			$this->throwValidationException(
+				$request, $validator
+			);
+		}
+		$user = new User();
+		$user->email = $request['email'];
+		$user->password = bcrypt($request['password']);
+		$user->save();
+
+		//$this->auth->login($this->registrar->create($request->all()));
+
+		//return redirect($this->redirectPath());
+				return redirect($this->loginPath());
 	}
 
 	public function redirectPath()
