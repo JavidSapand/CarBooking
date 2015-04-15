@@ -111,10 +111,12 @@
                 <div class="col-lg-9">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4>Users are Waiting for confirmation</h4>
+                            <h4>Users are waiting for confirmation</h4>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+							<div class="alert alert-success" style="display:none">
+							</div>
                             <div class="table-responsive table-bordered">
                                 <table class="table">
                                     <thead>
@@ -128,11 +130,17 @@
                                     	<?php $count = 0; ?>
                                        @foreach($users as $user)
                                        		<?php $count++; ?>
-	                                       <tr>
+	                                       <tr id="{{$user->id}}">
 	                                       	<td>{{ $count }}</td>
+	                                       	<td id = "user_id" style="display:none">{{ $user->id }}</td>
 	                                       	<td>{{ $user->email }} </td>
-	                                       	<td><span class="glyphicon glyphicon-ok-circle"></span>&nbsp&nbsp&nbsp&nbsp
-	                                       			<span class="glyphicon glyphicon-trash"></span>
+	                                       	<td>
+	                                       		<a href="javascript:void(0)" onclick="confirmUser({{$user->id}})">
+	                                       		<i class="glyphicon glyphicon-ok-circle" title="confirm user"></i></a>
+	                                       		&nbsp&nbsp&nbsp&nbsp
+	                                       		<a href="javascript:void(0)" onclick="removeUser({{$user->id}})">
+	                                       		<i class="glyphicon glyphicon-trash" title="remove user"></i></a>
+
 	                                       	</td>
 	                                       </tr>
 	                                    @endforeach
@@ -157,4 +165,37 @@
   		</footer>
   	</div>
     </div>
+    <script type="text/javascript">
+    	function confirmUser(id){
+    		var user_id = id;
+    		
+    		$.ajax({
+            data:  user_id,
+            url:   "ajax/edit/"+user_id+"",
+            type:  "get",
+            success:  function (data) {
+                $('#'+user_id).fadeOut(1000);
+                $('.alert').css('display', 'block');
+                $('.alert').html(data);
+                $('.alert').fadeOut(2000);
+            }
+        });	
+    	}
+
+    	function removeUser(id){
+    		var user_id = id;
+    		
+    		$.ajax({
+            data:  user_id,
+            url:   "ajax/remove/"+user_id+"",
+            type:  "get",
+            success:  function (data) {
+                $('#'+user_id).fadeOut(1000);
+                $('.alert').css('display', 'block');
+                $('.alert').html(data);
+                $('.alert').fadeOut(2000);
+            }
+        });	
+    	}
+    </script>
 @endsection

@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\User;
 
 use Illuminate\Http\Request;
 
@@ -56,7 +57,11 @@ class UserController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$user = User::findOrFail($id);
+		$user->confirm = true;
+		$user->save();
+		//$message = \Session::flash('flash_message', 'user confirmed');
+		return 'User Confirmed successfully';
 	}
 
 	/**
@@ -78,7 +83,9 @@ class UserController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		User::destroy($id);
+		//$message = \Session::flash('flash_message', 'user confirmed');
+		return 'User removed successfully';
 	}
 
 }

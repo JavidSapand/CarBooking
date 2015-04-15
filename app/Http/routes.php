@@ -4,16 +4,11 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 Route::get('admin', function(){
-	$users = User::all();
+	$users = User::all()->where('confirm','=', 0);
 	return View::make('admin.home', compact('users'));
 });
-Route::post('ajax/edit', function(){
-	 if(Request::ajax()){
-        return "AJAX";
-    }
-    return "HTTP";
-	
-});
+Route::get('ajax/edit/{id}', 'UserController@edit');
+Route::get('ajax/remove/{id}', 'UserController@destroy');
 
 // Route::get('booking','BookingController@index');
 // Route::get('booking/create','BookingController@create');
