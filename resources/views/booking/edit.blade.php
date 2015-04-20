@@ -4,54 +4,69 @@
 
 @include('errors/errors')
 
-	<h1>Add New Booking Here!</h1>
+<h1>Add New Booking Here!</h1>
 
-	<hr>
+<hr>
 
-	{!! Form::model($book,array('method'=>'put','route'=>['booking.update',$book->id],'class'=>'form')) !!}
+{!! Form::model($book,array('method'=>'put','route'=>['booking.update',$book->id],'class'=>'form')) !!}
 
 
-		<div class="form-group">
-			<!-- {!! Form::label('car_id','Car ID: ') !!}
-			{!! Form::text('car_id', null, ['class'=>'form-control','placeholder'=>'1.2.3....']) !!} -->
-			{!! Form::label('user_id','Select Car: ') !!}
-			{!! Form::text('user_id',null,['class'=>'form-control']) !!}
+	<div class="form-group">
+		{!! Form::label('user_id','Select Car: ') !!}
+		{!! Form::text('user_id',null,['class'=>'form-control']) !!}
+	</div>
+	
+	<div class="form-group">
+		{!! Form::label('car_id','Car ID: ') !!}
+		{!! Form::text('car_id', null, ['class'=>'form-control','placeholder'=>'1.2.3....']) !!}
+	</div>
+
+
+	<div class="row form-group">
+		<div class="col-md-6">
+		{!! Form::label('start_time','Start Time: ') !!}
+		{!! Form::text('start_time', null, ['class'=>'form-control timepicker']) !!}
+	</div>
+		<div class="col-md-6">
+			{!! Form::label('start_date','Start Date: ') !!}
+		{!! Form::text('start_date', null, ['class'=>'form-control datepicker ','data-format'=>'yyyy-dd-mm']) !!}
 		</div>
-		
-		<div class="form-group">
-			{!! Form::label('car_id','Car ID: ') !!}
-			{!! Form::text('car_id', null, ['class'=>'form-control','placeholder'=>'1.2.3....']) !!}
-			<!-- {!! Form::label('car_id','Select Car: ') !!}
-			{!! Form::select('car_id', ['car_0'=>'Corolla','car_1'=>'Toyota'],null,['class'=>'form-control']) !!} -->
-		</div>
+	</div>
 
-		<div class="form-group">
-			{!! Form::label('start_time','Start Time: ') !!}
-			{!! Form::input('date','start_time', date('Y-m-d'), ['class'=>'form-control']) !!}
-		</div>
-
-		<div class="form-group">
+	<div class="row form-group">
+		<div class="col-md-6">
 			{!! Form::label('end_time','End Time: ') !!}
-			{!! Form::input('date','end_time', date('Y-m-d'), ['class'=>'form-control']) !!}
+			{!! Form::text('end_time', null, ['class'=>'form-control timepicker']) !!}
 		</div>
-
-		<div class="form-group">
-			{!! Form::label('source','Source: ') !!}
-			{!! Form::text('source',null,['class'=>'form-control','placeholder'=>'Source ']) !!}
+		<div class="col-md-6">
+			{!! Form::label('end_date','End Date: ') !!}
+			{!! Form::text('end_date', null, ['class'=>'form-control datepicker','data-format'=>'yyyy-dd-mm']) !!}
 		</div>
+	</div>
 
-		<div class="form-group">
-			{!! Form::label('destination','Destination: ') !!}
-			{!! Form::text('destination',null,['class'=>'form-control','placeholder'=>'Destination ']) !!}
-		</div>
+	<div class="form-group">
+		{!! Form::label('source','Source: ') !!}
+		{!! Form::text('source',null,['class'=>'form-control','placeholder'=>'Source ']) !!}
+	</div>
+
+	<div class="form-group">
+		{!! Form::label('destination','Destination: ') !!}
+		{!! Form::text('destination',null,['class'=>'form-control','placeholder'=>'Destination ']) !!}
+	</div>
 
 
 
-		<div class="form-group">
-			{!! Form::submit('Edit Booking',['class'=>'btn-success form-control']) !!}
-		</div>
+	<div class="form-group">
+		{!! Form::submit('Edit Booking',['class'=>'btn-primary form-control']) !!}
+	</div>
+	<script type="text/javascript">
+		$('.timepicker').timepicker();
+	    $('.datepicker').datepicker({
+	    	format: 'yyyy-mm-dd'
+	    });
 
-	  
-	{!! Form::close() !!}
+	</script>
+  
+{!! Form::close() !!}
 
 @endsection

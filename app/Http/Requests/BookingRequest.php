@@ -22,6 +22,10 @@ class BookingRequest extends Request {
 	public function rules()
 	{
 		return [
+			'start_time' => 'required',
+			'start_date' => 'required',
+			'end_time' => 'required',
+			'end_date' => 'required',
 			'source' => 'required',
 			'destination' => 'required'
 		];

@@ -18,6 +18,7 @@ Route::get('ajax/remove/{id}', 'UserController@destroy');
 
 Route::resource('booking','BookingController');
 Route::post('booking/store','BookingController@store');
+//Route::get('booking/{id}/edit','BookingController@edit');
 
 
 

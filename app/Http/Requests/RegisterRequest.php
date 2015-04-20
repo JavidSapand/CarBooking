@@ -24,7 +24,7 @@ class RegisterRequest extends Request {
 		return [
 			'email' => 'required|email',
 			'password' => 'required'
-		];
+		]; 
 	}
 
 }
